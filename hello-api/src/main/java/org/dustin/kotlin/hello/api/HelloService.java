@@ -36,7 +36,7 @@ public interface HelloService extends Service {
   /**
    * This gets published to Kafka.
    */
-  Topic<HelloEvent> helloEvents();
+  Topic<KHelloEvent> helloEvents();
 
   @Override
   default Descriptor descriptor() {
@@ -51,7 +51,7 @@ public interface HelloService extends Service {
           // go to the same partition (and hence are delivered in order with respect
           // to that user), we configure a partition key strategy that extracts the
           // name as the partition key.
-          .withProperty(KafkaProperties.partitionKeyStrategy(), HelloEvent::getName)
+          .withProperty(KafkaProperties.partitionKeyStrategy(), KHelloEvent::getEventName)
         ).withAutoAcl(true);
     // @formatter:on
   }

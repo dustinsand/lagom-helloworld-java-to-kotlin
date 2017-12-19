@@ -2,7 +2,7 @@ package org.dustin.kotlin.stream.impl;
 
 import akka.Done;
 import akka.stream.javadsl.Flow;
-import org.dustin.kotlin.hello.api.HelloEvent;
+import org.dustin.kotlin.hello.api.KHelloEvent;
 import org.dustin.kotlin.hello.api.HelloService;
 
 import javax.inject.Inject;
@@ -20,10 +20,10 @@ public class StreamSubscriber {
       // And subscribe to it with at least once processing semantics.
       .atLeastOnce(
         // Create a flow that emits a Done for each message it processes
-        Flow.<HelloEvent>create().mapAsync(1, event -> {
+        Flow.<KHelloEvent>create().mapAsync(1, event -> {
 
-          if (event instanceof HelloEvent.GreetingMessageChanged) {
-            HelloEvent.GreetingMessageChanged messageChanged = (HelloEvent.GreetingMessageChanged) event;
+          if (event instanceof KHelloEvent.KGreetingMessageChanged) {
+            KHelloEvent.KGreetingMessageChanged messageChanged = (KHelloEvent.KGreetingMessageChanged) event;
             // Update the message
             return repository.updateMessage(messageChanged.getName(), messageChanged.getMessage());
 

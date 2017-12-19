@@ -52,7 +52,7 @@ public class HelloServiceImpl implements HelloService {
   }
 
   @Override
-  public Topic<org.dustin.kotlin.hello.api.HelloEvent> helloEvents() {
+  public Topic<org.dustin.kotlin.hello.api.KHelloEvent> helloEvents() {
     // We want to publish all the shards of the hello event
     return TopicProducer.taggedStreamWithOffset(HelloEvent.TAG.allTags(), (tag, offset) ->
 
@@ -63,11 +63,11 @@ public class HelloServiceImpl implements HelloService {
       // Although these two events are currently identical, in future they may
       // change and need to evolve separately, by separating them now we save
       // a lot of potential trouble in future.
-      org.dustin.kotlin.hello.api.HelloEvent eventToPublish;
+      org.dustin.kotlin.hello.api.KHelloEvent eventToPublish;
 
       if (eventAndOffset.first() instanceof HelloEvent.GreetingMessageChanged) {
         HelloEvent.GreetingMessageChanged messageChanged = (HelloEvent.GreetingMessageChanged) eventAndOffset.first();
-        eventToPublish = new org.dustin.kotlin.hello.api.HelloEvent.GreetingMessageChanged(
+        eventToPublish = new org.dustin.kotlin.hello.api.KHelloEvent.KGreetingMessageChanged(
           messageChanged.getName(), messageChanged.getMessage()
         );
       } else {
