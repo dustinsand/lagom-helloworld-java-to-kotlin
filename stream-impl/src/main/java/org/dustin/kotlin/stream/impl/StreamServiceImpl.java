@@ -1,14 +1,16 @@
 package org.dustin.kotlin.stream.impl;
 
-import akka.NotUsed;
-import akka.stream.javadsl.Source;
-import com.lightbend.lagom.javadsl.api.ServiceCall;
-import org.dustin.kotlin.hello.api.HelloService;
-import org.dustin.kotlin.stream.api.StreamService;
+import static java.util.concurrent.CompletableFuture.completedFuture;
 
 import javax.inject.Inject;
 
-import static java.util.concurrent.CompletableFuture.completedFuture;
+import org.dustin.kotlin.hello.api.HelloService;
+import org.dustin.kotlin.stream.api.StreamService;
+
+import com.lightbend.lagom.javadsl.api.ServiceCall;
+
+import akka.NotUsed;
+import akka.stream.javadsl.Source;
 
 /**
  * Implementation of the HelloString.

@@ -8,19 +8,20 @@ import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
 
+import org.dustin.kotlin.hello.api.GreetingMessage;
 import org.dustin.kotlin.hello.api.HelloService;
-import org.dustin.kotlin.hello.api.KGreetingMessage;
 import org.dustin.kotlin.stream.api.StreamService;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.lightbend.lagom.javadsl.client.integration.LagomClientFactory;
 
 import akka.actor.ActorSystem;
 import akka.stream.ActorMaterializer;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
-import com.lightbend.lagom.javadsl.client.integration.LagomClientFactory;
 
 public class StreamIT {
 
@@ -47,7 +48,7 @@ public class StreamIT {
     public void helloWorld() throws Exception {
         String answer = await(helloService.hello("foo").invoke());
         assertEquals("Hello, foo!", answer);
-        await(helloService.useGreeting("bar").invoke(new KGreetingMessage("Hi")));
+        await(helloService.useGreeting("bar").invoke(new GreetingMessage("Hi")));
         String answer2 = await(helloService.hello("bar").invoke());
         assertEquals("Hi, bar!", answer2);
     }

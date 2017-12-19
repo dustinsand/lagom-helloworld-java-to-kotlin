@@ -1,9 +1,10 @@
 package org.dustin.kotlin.stream.impl;
 
-import com.google.inject.AbstractModule;
-import com.lightbend.lagom.javadsl.server.ServiceGuiceSupport;
 import org.dustin.kotlin.hello.api.HelloService;
 import org.dustin.kotlin.stream.api.StreamService;
+
+import com.google.inject.AbstractModule;
+import com.lightbend.lagom.javadsl.server.ServiceGuiceSupport;
 
 /**
  * The module that binds the StreamService so that it can be served.
