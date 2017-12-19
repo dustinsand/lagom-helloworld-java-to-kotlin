@@ -13,7 +13,7 @@ import com.lightbend.lagom.javadsl.api.broker.Topic;
 import com.lightbend.lagom.javadsl.api.broker.kafka.KafkaProperties;
 
 /**
- * If implement Service in Kotling get this runtime error:
+ * If implement Service in Kotlin, get this runtime error:
  *
  * Caused by: java.lang.IllegalArgumentException: Service.descriptor must be implemented as a default method
  *
@@ -28,8 +28,7 @@ public interface HelloService extends Service {
 
 
     /**
-     * Example: curl -H "Content-Type: application/json" -X POST -d '{"message":
-     * "Hi"}' http://localhost:9000/api/hello/Alice
+     * Example: curl -H "Content-Type: application/json" -X POST -d '{"message": "Hi"}' http://localhost:9000/api/hello/Alice
      */
     ServiceCall<GreetingMessage, Done> useGreeting(String id);
 
