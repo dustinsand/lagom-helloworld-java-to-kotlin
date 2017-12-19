@@ -3,12 +3,12 @@ package org.dustin.kotlin.hello.impl;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import com.lightbend.lagom.javadsl.persistence.PersistentEntity;
-
-import akka.Done;
 import org.dustin.kotlin.hello.impl.HelloCommand.Hello;
 import org.dustin.kotlin.hello.impl.HelloCommand.UseGreetingMessage;
 import org.dustin.kotlin.hello.impl.HelloEvent.GreetingMessageChanged;
+
+import akka.Done;
+import com.lightbend.lagom.javadsl.persistence.PersistentEntity;
 
 /**
  * This is an event sourced entity. It has a state, {@link HelloState}, which

@@ -1,20 +1,21 @@
 package org.dustin.kotlin.hello.impl;
 
-import akka.Done;
-import akka.NotUsed;
-import akka.japi.Pair;
+import javax.inject.Inject;
+
+import org.dustin.kotlin.hello.api.HelloService;
+import org.dustin.kotlin.hello.api.KGreetingMessage;
+import org.dustin.kotlin.hello.impl.HelloCommand.Hello;
+import org.dustin.kotlin.hello.impl.HelloCommand.UseGreetingMessage;
+
 import com.lightbend.lagom.javadsl.api.ServiceCall;
 import com.lightbend.lagom.javadsl.api.broker.Topic;
 import com.lightbend.lagom.javadsl.broker.TopicProducer;
 import com.lightbend.lagom.javadsl.persistence.PersistentEntityRef;
 import com.lightbend.lagom.javadsl.persistence.PersistentEntityRegistry;
 
-import java.util.Optional;
-
-import javax.inject.Inject;
-import org.dustin.kotlin.hello.api.GreetingMessage;
-import org.dustin.kotlin.hello.api.HelloService;
-import org.dustin.kotlin.hello.impl.HelloCommand.*;
+import akka.Done;
+import akka.NotUsed;
+import akka.japi.Pair;
 
 /**
  * Implementation of the HelloService.
@@ -40,12 +41,12 @@ public class HelloServiceImpl implements HelloService {
   }
 
   @Override
-  public ServiceCall<GreetingMessage, Done> useGreeting(String id) {
+  public ServiceCall<KGreetingMessage, Done> useGreeting(String id) {
     return request -> {
       // Look up the hello world entity for the given ID.
       PersistentEntityRef<HelloCommand> ref = persistentEntityRegistry.refFor(HelloEntity.class, id);
       // Tell the entity to use the greeting message specified.
-      return ref.ask(new UseGreetingMessage(request.message));
+      return ref.ask(new UseGreetingMessage(request.getMessage()));
     };
 
   }

@@ -30,7 +30,7 @@ public interface HelloService extends Service {
    * Example: curl -H "Content-Type: application/json" -X POST -d '{"message":
    * "Hi"}' http://localhost:9000/api/hello/Alice
    */
-  ServiceCall<GreetingMessage, Done> useGreeting(String id);
+  ServiceCall<KGreetingMessage, Done> useGreeting(String id);
 
 
   /**

@@ -5,10 +5,9 @@ import static com.lightbend.lagom.javadsl.testkit.ServiceTest.withServer;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
-
-import org.dustin.kotlin.hello.api.GreetingMessage;
 import org.dustin.kotlin.hello.api.HelloService;
+import org.dustin.kotlin.hello.api.KGreetingMessage;
+import org.junit.Test;
 
 public class HelloServiceTest {
 
@@ -20,7 +19,7 @@ public class HelloServiceTest {
       String msg1 = service.hello("Alice").invoke().toCompletableFuture().get(5, SECONDS);
       assertEquals("Hello, Alice!", msg1); // default greeting
 
-      service.useGreeting("Alice").invoke(new GreetingMessage("Hi")).toCompletableFuture().get(5, SECONDS);
+      service.useGreeting("Alice").invoke(new KGreetingMessage("Hi")).toCompletableFuture().get(5, SECONDS);
       String msg2 = service.hello("Alice").invoke().toCompletableFuture().get(5, SECONDS);
       assertEquals("Hi, Alice!", msg2);
 
