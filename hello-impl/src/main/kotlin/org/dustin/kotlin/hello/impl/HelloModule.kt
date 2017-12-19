@@ -5,8 +5,8 @@ import com.lightbend.lagom.javadsl.server.ServiceGuiceSupport
 import org.dustin.kotlin.hello.api.HelloService
 
 
-class KHelloModule : AbstractModule(), ServiceGuiceSupport {
+class HelloModule : AbstractModule(), ServiceGuiceSupport {
     override fun configure() {
-        bindService(HelloService::class.java, KHelloServiceImpl::class.java)
+        bindService(HelloService::class.java, HelloServiceImpl::class.java)
     }
 }

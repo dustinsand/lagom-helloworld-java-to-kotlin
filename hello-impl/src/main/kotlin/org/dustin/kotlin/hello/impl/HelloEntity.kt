@@ -24,7 +24,7 @@ import java.util.*
  * This entity defines one event, the {@link GreetingMessageChanged} event,
  * which is emitted when a {@link UseGreetingMessage} command is received.
  */
-class KHelloEntity : PersistentEntity<KHelloCommand, KHelloEvent, KHelloState>() {
+class HelloEntity : PersistentEntity<HelloCommand, PHelloEvent, HelloState>() {
     /*
      * Behaviour is defined using a behaviour builder. The behaviour builder
      * starts with a state, if this entity supports snapshotting (an
@@ -34,14 +34,14 @@ class KHelloEntity : PersistentEntity<KHelloCommand, KHelloEvent, KHelloState>()
      *
      * Otherwise, the default state is to use the Hello greeting.
      */
-    override fun initialBehavior(snapshotState: Optional<KHelloState>): Behavior {
-        val b = newBehaviorBuilder(snapshotState.orElse(KHelloState("Hello", LocalDateTime.now().toString())))
+    override fun initialBehavior(snapshotState: Optional<HelloState>): Behavior {
+        val b = newBehaviorBuilder(snapshotState.orElse(HelloState("Hello", LocalDateTime.now().toString())))
 
         /*
          * Command handler for the UseGreetingMessage command.
          */
-        b.setCommandHandler(KHelloCommand.UseGreetingMessage::class.java) { cmd, ctx ->
-            ctx.thenPersist(KHelloEvent.KGreetingMessageChanged(name = entityId(), message = cmd.message)) { _ ->
+        b.setCommandHandler(HelloCommand.UseGreetingMessage::class.java) { cmd, ctx ->
+            ctx.thenPersist(PHelloEvent.KGreetingMessageChanged(name = entityId(), message = cmd.message)) { _ ->
                 ctx.reply(Done.getInstance())
             }
         }
@@ -49,14 +49,14 @@ class KHelloEntity : PersistentEntity<KHelloCommand, KHelloEvent, KHelloState>()
         /*
          * Event handler for the GreetingMessageChanged event.
          */
-        b.setEventHandler(KHelloEvent.KGreetingMessageChanged::class.java) { evt ->
-            KHelloState(evt.message, LocalDateTime.now().toString())
+        b.setEventHandler(PHelloEvent.KGreetingMessageChanged::class.java) { evt ->
+            HelloState(evt.message, LocalDateTime.now().toString())
         }
 
         /*
          * Command handler for the Hello command.
          */
-        b.setReadOnlyCommandHandler(KHelloCommand.Hello::class.java) { cmd, ctx ->
+        b.setReadOnlyCommandHandler(HelloCommand.Hello::class.java) { cmd, ctx ->
             ctx.reply("${state().message}, ${cmd.name}!")
         }
 

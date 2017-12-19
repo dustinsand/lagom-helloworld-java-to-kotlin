@@ -9,7 +9,7 @@ import org.junit.Test
 import java.util.concurrent.TimeUnit.SECONDS
 
 
-class KHelloServiceTest {
+class HelloServiceTest {
     @Test
     @Throws(Exception::class)
     fun shouldStorePersonalizedGreeting() {

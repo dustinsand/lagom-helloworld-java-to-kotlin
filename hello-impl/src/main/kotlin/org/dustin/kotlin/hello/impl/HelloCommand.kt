@@ -8,7 +8,7 @@ import com.lightbend.lagom.serialization.Jsonable
 import javax.annotation.concurrent.Immutable
 
 
-interface KHelloCommand : Jsonable {
+interface HelloCommand : Jsonable {
     /**
      * A command to switch the greeting message.
      *
@@ -18,7 +18,7 @@ interface KHelloCommand : Jsonable {
      */
     @Immutable
     @JsonDeserialize
-    data class UseGreetingMessage(val message: String) : KHelloCommand, CompressedJsonable, PersistentEntity.ReplyType<Done>
+    data class UseGreetingMessage(val message: String) : HelloCommand, CompressedJsonable, PersistentEntity.ReplyType<Done>
 
 
     /**
@@ -30,5 +30,5 @@ interface KHelloCommand : Jsonable {
      */
     @Immutable
     @JsonDeserialize
-    data class Hello(val name: String) : KHelloCommand, PersistentEntity.ReplyType<String>
+    data class Hello(val name: String) : HelloCommand, PersistentEntity.ReplyType<String>
 }

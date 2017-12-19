@@ -7,4 +7,4 @@ import javax.annotation.concurrent.Immutable
 
 @Immutable
 @JsonDeserialize
-data class KHelloState(val message: String, val timestamp: String) : CompressedJsonable
+data class HelloState(val message: String, val timestamp: String) : CompressedJsonable

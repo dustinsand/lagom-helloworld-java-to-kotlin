@@ -14,34 +14,34 @@ import org.dustin.kotlin.hello.api.HelloService
 import javax.inject.Inject
 
 
-class KHelloServiceImpl @Inject constructor(private val persistentEntityRegistry: PersistentEntityRegistry) : HelloService {
+class HelloServiceImpl @Inject constructor(private val persistentEntityRegistry: PersistentEntityRegistry) : HelloService {
 
     init {
-        persistentEntityRegistry.register(KHelloEntity::class.java)
+        persistentEntityRegistry.register(HelloEntity::class.java)
     }
 
     override fun hello(id: String): ServiceCall<NotUsed, String> {
         return ServiceCall {
             // Look up the hello world entity for the given ID.
-            val ref = persistentEntityRegistry.refFor(KHelloEntity::class.java, id)
+            val ref = persistentEntityRegistry.refFor(HelloEntity::class.java, id)
             // Ask the entity the Hello command.
-            ref.ask<String, KHelloCommand.Hello>(KHelloCommand.Hello(id))
+            ref.ask<String, HelloCommand.Hello>(HelloCommand.Hello(id))
         }
     }
 
     override fun useGreeting(id: String): ServiceCall<GreetingMessage, Done> {
         return ServiceCall { request ->
             // Look up the hello world entity for the given ID.
-            val ref = persistentEntityRegistry.refFor(KHelloEntity::class.java, id)
+            val ref = persistentEntityRegistry.refFor(HelloEntity::class.java, id)
             // Tell the entity to use the greeting message specified.
-            ref.ask<Done, KHelloCommand.UseGreetingMessage>(KHelloCommand.UseGreetingMessage(request.message))
+            ref.ask<Done, HelloCommand.UseGreetingMessage>(HelloCommand.UseGreetingMessage(request.message))
         }
 
     }
 
     override fun helloEvents(): Topic<HelloEvent> {
         // We want to publish all the shards of the hello event
-        return TopicProducer.taggedStreamWithOffset(SHelloEvent.TAG.allTags()
+        return TopicProducer.taggedStreamWithOffset(HelloEventObject.TAG.allTags()
         ) { tag, offset ->
 
             // Load the event stream for the passed in shard tag
@@ -53,8 +53,8 @@ class KHelloServiceImpl @Inject constructor(private val persistentEntityRegistry
                 // a lot of potential trouble in future.
                 val eventToPublish: org.dustin.kotlin.hello.api.HelloEvent
 
-                if (eventAndOffset.first() is KHelloEvent.KGreetingMessageChanged) {
-                    val messageChanged = eventAndOffset.first() as KHelloEvent.KGreetingMessageChanged
+                if (eventAndOffset.first() is PHelloEvent.KGreetingMessageChanged) {
+                    val messageChanged = eventAndOffset.first() as PHelloEvent.KGreetingMessageChanged
                     eventToPublish = org.dustin.kotlin.hello.api.HelloEvent.GreetingMessageChanged(
                             messageChanged.name, messageChanged.message)
                 } else {
