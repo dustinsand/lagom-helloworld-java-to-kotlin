@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.dustin.kotlin</groupId>
-        <artifactId>MyKotlin</artifactId>
+        <artifactId>lagom-helloworld-java-to-kotlin</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
