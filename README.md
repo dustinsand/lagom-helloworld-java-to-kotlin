@@ -2,7 +2,7 @@
 Proof of technology (POT) to evaluate Kotlin as the implementation language for Lagom microservices. [Hello Lagom project (1.4.X) from Get Started with Lightbend Technologies](https://developer.lightbend.com/start/?group=lagom&project=lagom-java-maven) was ported from Java to Kotlin with 1 to 1 matching functionality.
 
 # Goal of POT
-Verify Kotlin can be used for Lagom microservices to gain the productivity and language advancements compared to Java. Scala would be the logical choice instead of Kotlin (my preference too), but all the teams I have worked on use Java as the primary language. Resistance to change has been a common theme. Kotlin resistance is less due to the similarity with Java and this project gives proof it is possible to be used with the wonderful Lagom framework.  
+Verify Kotlin can be used for Lagom microservices to gain the productivity and language advancements compared to Java. Scala would be the logical choice instead of Kotlin (my preference too), but all the teams I have worked on use Java as the primary language. Resistance to change has been a common theme. Kotlin resistance is less due to the similarity with Java and this project gives proof it is possible to be used with the awesome Lagom framework.  
 
 
 # Key Changes
@@ -52,4 +52,4 @@ Hi, World!
 
 # Summary
 
-The project was successfully ported to Kotlin. Unit and integration tests passed and the service is runnable.  Next up is a new project to verify advanced use cases in Lagom can also be ported.
+The project was successfully ported to Kotlin. Unit and integration tests passed and the services are runnable.  Next up is a new project to verify advanced use cases in Lagom can also be ported.
