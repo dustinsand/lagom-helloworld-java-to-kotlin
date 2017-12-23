@@ -6,25 +6,17 @@ import akka.testkit.javadsl.TestKit
 import com.lightbend.lagom.javadsl.testkit.PersistentEntityTestDriver
 import org.junit.AfterClass
 import org.junit.Assert.assertEquals
-import org.junit.BeforeClass
 import org.junit.Test
 
 
 class HelloEntityTest {
     companion object {
-        var system: ActorSystem? = null
-
-        @BeforeClass
-        @JvmStatic
-        fun setup() {
-            system = ActorSystem.create("HelloEntityTest")
-        }
+        private val system: ActorSystem = ActorSystem.create("HelloEntityTest")
 
         @AfterClass
         @JvmStatic
         fun teardown() {
             TestKit.shutdownActorSystem(system)
-            system = null
         }
     }
     
