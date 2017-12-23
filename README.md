@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dustinsand/lagom-helloworld-java-to-kotlin.svg?branch=master)](https://travis-ci.org/dustinsand/lagom-helloworld-java-to-kotlin)
+
 # lagom-helloworld-java-to-kotlin
 Proof of technology (POT) to evaluate Kotlin as the implementation language for Lagom microservices. [Hello Lagom project (1.4.0-M3) from Get Started with Lightbend Technologies](https://developer.lightbend.com/start/?group=lagom&project=lagom-java-maven) was ported from Java to Kotlin with 1 to 1 matching functionality.
 
