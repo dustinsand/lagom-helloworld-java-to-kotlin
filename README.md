@@ -3,7 +3,7 @@
 # lagom-helloworld-java-to-kotlin
 Proof of technology (POT) to evaluate Kotlin as the implementation language for Lagom microservices. [Hello Lagom project (1.4.0-M3) from Get Started with Lightbend Technologies](https://developer.lightbend.com/start/?group=lagom&project=lagom-java-maven) was ported from Java to Kotlin with 1 to 1 matching functionality.
 
-# Goal of POT
+# Goal
 Show Kotlin can be used for Lagom microservices to gain the productivity and language advancements compared to Java. Why not Scala?  Scala would have been the logical choice and a good one, but I've found less resistance from team members to learn Kotlin compared to Scala.   
 
 
