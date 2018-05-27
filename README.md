@@ -17,12 +17,7 @@ Show Kotlin can be used for Lagom microservices to gain the productivity and lan
 
 Caused by: java.lang.IllegalArgumentException: Service.descriptor must be implemented as a default method
 
-
-Explanation for error found in the book "Programming Kotlin":
-
-The code where the exception is thrown first checks to see if the descriptor method has a Java 8 interface default method, and if not, checks if it has been created with Scala (Lagom is written in Scala and on top of the Akka framework). Unfortunately, the Java 8 interop coming next to Kotlin is not yet perfect and it doesn't handle default interface methods. There is no way to tell the compiler the descriptor method in the earlier code should be compiled as a Java 8 default method. So, for the time being, we have to rely on Java to define the service interface.
-
-Solution was to leave the Service interface in Java.
+Workaround explained here https://github.com/lagom/lagom/issues/1180.
    
 
 # Run
