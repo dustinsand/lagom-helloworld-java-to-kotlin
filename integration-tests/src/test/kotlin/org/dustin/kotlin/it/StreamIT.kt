@@ -14,8 +14,7 @@ import org.junit.AfterClass
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.net.URI
-import java.util.*
-import java.util.concurrent.CompletableFuture
+import java.util.Arrays
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit
 
@@ -57,8 +56,7 @@ class StreamIT {
         // finished feeding our elements in, and then also to take 3 from the response stream, this ensures our
         // connection does get closed once we've received the 3 elements.
         val response = await<Source<String, NotUsed>>(streamService.directStream().invoke(
-                Source.from(Arrays.asList("a", "b", "c"))
-                        .concat<String, CompletableFuture<Optional<String>>>(Source.maybe())))
+                Source.from(Arrays.asList("a", "b", "c")).concat(Source.maybe())))
         val messages = await(response.take(3).runWith(Sink.seq(), mat))
         assertEquals(Arrays.asList("Hello, a!", "Hello, b!", "Hello, c!"), messages)
     }
